@@ -1,0 +1,6 @@
+- (type)name {
+    if (!_name) {
+        _name = [[type_alloc alloc] init];
+    }
+    return _name;
+}

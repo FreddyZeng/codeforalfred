@@ -58,11 +58,37 @@
 				<false/>
 			</dict>
 		</array>
+		<key>2A9BAF9B-C8E9-4256-B604-EDBA430410CA</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>ADD4FD10-F124-4240-AE64-E0CDC3D640F9</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>3060E77C-2F49-4519-94B6-B5FC4CE4AA8D</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>2612E0A4-3532-4E59-BF36-3EED470493F0</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>65245233-C256-4599-B804-09EC513B0A98</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>2D96AC72-ED12-4319-9AA8-BF4F0C264379</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -97,11 +123,37 @@
 				<true/>
 			</dict>
 		</array>
+		<key>ADD4FD10-F124-4240-AE64-E0CDC3D640F9</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>D2DC1621-0FEC-472C-8680-6109085589CE</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
 		<key>BE605AE5-3747-4B9B-AF18-1FE53C6BD4C0</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
 				<string>214090EE-62A0-4956-BA22-D8FB1529AE1D</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+				<key>vitoclose</key>
+				<false/>
+			</dict>
+		</array>
+		<key>D2DC1621-0FEC-472C-8680-6109085589CE</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>65245233-C256-4599-B804-09EC513B0A98</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -153,11 +205,11 @@
 				<key>argumenttype</key>
 				<integer>0</integer>
 				<key>keyword</key>
-				<string>getter</string>
+				<string>uiget</string>
 				<key>subtext</key>
 				<string></string>
 				<key>text</key>
-				<string>replace var of code</string>
+				<string>uiget</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -321,9 +373,9 @@
 				<key>escaping</key>
 				<integer>102</integer>
 				<key>script</key>
-				<string>code=`echo -n "$1" | grep --no-filename -o -E ').* *([a-zA-Z0-9_]+) *;' | sed -E 's/\) *([a-zA-Z0-9_]+) *((&lt;[a-zA-Z0-9_]+ * *\* *&gt;)? * \*?)? *([a-zA-Z0-9_]+) *;$/\4:(\1\2)\4/' | xargs`
+				<string>code=`echo -e "$1" | grep --no-filename -o -E ').* *([a-zA-Z0-9_]+) *;' | sed -E 's/\) *([a-zA-Z0-9_]+) *((&lt;[a-zA-Z0-9_]+ * *\* *&gt;)? * \*?)? *([a-zA-Z0-9_]+) *;$/\4:(\1\2)\4/' | xargs`
 
-echo "$code"</string>
+echo -e "$code"</string>
 				<key>scriptargtype</key>
 				<integer>1</integer>
 				<key>scriptfile</key>
@@ -348,7 +400,7 @@ echo "$code"</string>
 				<key>subtext</key>
 				<string></string>
 				<key>text</key>
-				<string>replace var of code</string>
+				<string>method</string>
 				<key>withspace</key>
 				<true/>
 			</dict>
@@ -401,6 +453,152 @@ echo "$code"</string>
 			<key>version</key>
 			<integer>2</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>keyword</key>
+				<string>modelget</string>
+				<key>subtext</key>
+				<string></string>
+				<key>text</key>
+				<string>modelget</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.keyword</string>
+			<key>uid</key>
+			<string>2A9BAF9B-C8E9-4256-B604-EDBA430410CA</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>102</integer>
+				<key>script</key>
+				<string>array=$(echo -n "$1" | grep --no-filename -o -E ').* *([a-zA-Z0-9_]+) *;')
+
+type_name_array=()
+
+for i in "${array[@]}"
+do
+    var_type_name=`echo "$i" | sed -E 's/\) *([a-zA-Z0-9_]+) *((&lt;[a-zA-Z0-9_]+ * *\* *&gt;)? * \*?)? *([a-zA-Z0-9_]+) *;$/\1\2:\4/'`
+	#echo "$var_type_name"
+	type_name_array+=("$var_type_name")
+done
+
+#echo -e "${type_name_array[*]}"
+
+get_template=`cat model_get`
+
+
+echo "" &gt; temp_model_get_content
+
+	IFS=$'\n'
+	for i in ${type_name_array[*]}
+	do
+
+		type=`echo "$i" | sed -E 's/(.*):[a-zA-Z0-9_]+$/\1/' | sed -E 's/\n//g'`
+		name=`echo "$i" | sed -E 's/.*:([a-zA-Z0-9_]+$)/\1/' | sed -E 's/\n//g'`
+
+		type_alloc=`echo "$i" | sed -E 's/(.*) *\* *:[a-zA-Z0-9_]+$/\1/' | sed -E 's/\n//g'`
+
+		if [ "$i" == "$type_alloc" ]; then
+			type_alloc=$type
+		fi
+
+		type_alloc=`echo $type_alloc | sed -E 's/ //g'`
+	
+		get_template_res=`echo -n "$get_template" | sed -E "s/type_alloc/$type_alloc/g"`
+		get_template_res=`echo -n "$get_template_res" | sed -E "s/type/$type/g"`
+		get_template_res=`echo -n "$get_template_res" | sed -E "s/name/$name/g"`
+
+		echo -e "$get_template_res\n" &gt;&gt; temp_model_get_content
+	
+	done
+
+	cat temp_model_get_content</string>
+				<key>scriptargtype</key>
+				<integer>1</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>65245233-C256-4599-B804-09EC513B0A98</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>autopaste</key>
+				<false/>
+				<key>clipboardtext</key>
+				<string>{query}</string>
+				<key>ignoredynamicplaceholders</key>
+				<false/>
+				<key>transient</key>
+				<false/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.output.clipboard</string>
+			<key>uid</key>
+			<string>2D96AC72-ED12-4319-9AA8-BF4F0C264379</string>
+			<key>version</key>
+			<integer>3</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string>(UI)?Label</string>
+				<key>regexcaseinsensitive</key>
+				<false/>
+				<key>regexmultiline</key>
+				<false/>
+				<key>replacestring</key>
+				<string>NSString</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.replace</string>
+			<key>uid</key>
+			<string>ADD4FD10-F124-4240-AE64-E0CDC3D640F9</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>matchmode</key>
+				<integer>1</integer>
+				<key>matchstring</key>
+				<string>(UI)?ImageView</string>
+				<key>regexcaseinsensitive</key>
+				<false/>
+				<key>regexmultiline</key>
+				<false/>
+				<key>replacestring</key>
+				<string>UIImage</string>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.utility.replace</string>
+			<key>uid</key>
+			<string>D2DC1621-0FEC-472C-8680-6109085589CE</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -434,6 +632,20 @@ echo "$code"</string>
 			<key>ypos</key>
 			<integer>80</integer>
 		</dict>
+		<key>2A9BAF9B-C8E9-4256-B604-EDBA430410CA</key>
+		<dict>
+			<key>xpos</key>
+			<integer>10</integer>
+			<key>ypos</key>
+			<integer>500</integer>
+		</dict>
+		<key>2D96AC72-ED12-4319-9AA8-BF4F0C264379</key>
+		<dict>
+			<key>xpos</key>
+			<integer>880</integer>
+			<key>ypos</key>
+			<integer>500</integer>
+		</dict>
 		<key>2E0AC721-D1AD-4231-9E34-0A2EC0D814F3</key>
 		<dict>
 			<key>xpos</key>
@@ -447,6 +659,13 @@ echo "$code"</string>
 			<integer>190</integer>
 			<key>ypos</key>
 			<integer>110</integer>
+		</dict>
+		<key>65245233-C256-4599-B804-09EC513B0A98</key>
+		<dict>
+			<key>xpos</key>
+			<integer>680</integer>
+			<key>ypos</key>
+			<integer>500</integer>
 		</dict>
 		<key>7B2520DA-B04A-4E65-B530-0EA195272B83</key>
 		<dict>
@@ -462,12 +681,26 @@ echo "$code"</string>
 			<key>ypos</key>
 			<integer>80</integer>
 		</dict>
+		<key>ADD4FD10-F124-4240-AE64-E0CDC3D640F9</key>
+		<dict>
+			<key>xpos</key>
+			<integer>170</integer>
+			<key>ypos</key>
+			<integer>530</integer>
+		</dict>
 		<key>BE605AE5-3747-4B9B-AF18-1FE53C6BD4C0</key>
 		<dict>
 			<key>xpos</key>
 			<integer>10</integer>
 			<key>ypos</key>
 			<integer>285</integer>
+		</dict>
+		<key>D2DC1621-0FEC-472C-8680-6109085589CE</key>
+		<dict>
+			<key>xpos</key>
+			<integer>285</integer>
+			<key>ypos</key>
+			<integer>530</integer>
 		</dict>
 		<key>F0547C20-9322-418C-A2A9-9E826974DBED</key>
 		<dict>
@@ -479,7 +712,7 @@ echo "$code"</string>
 		<key>F6B7509E-F130-4628-A330-71EBFF532742</key>
 		<dict>
 			<key>xpos</key>
-			<integer>865</integer>
+			<integer>875</integer>
 			<key>ypos</key>
 			<integer>80</integer>
 		</dict>
